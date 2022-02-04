@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "serve": "node lib/app.js",
-    "start": "HYDRA_ADMIN_URL=https://kuartzo.com:445 ts-node-dev --watch public,views --respawn src/app.ts",
+    "start": "HYDRA_ADMIN_URL=http://localhost:4445 ts-node-dev --watch public,views --respawn src/app.ts",
     "test": "npm-run-all build",
     "format": "prettier --write ${npm_package_config_prettierTarget}",
     "format:check": "prettier --check ${npm_package_config_prettierTarget}",
