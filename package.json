@@ -14,7 +14,8 @@
     "start": "ts-node-dev --watch public,views --respawn src/app.ts",
     "test": "npm-run-all build",
     "format": "prettier --write ${npm_package_config_prettierTarget}",
-    "format:check": "prettier --check ${npm_package_config_prettierTarget}"
+    "format:check": "prettier --check ${npm_package_config_prettierTarget}",
+    "docker:build": "docker build ."
   },
   "dependencies": {
     "@oryd/hydra-client": "1.9.0-alpha.2",

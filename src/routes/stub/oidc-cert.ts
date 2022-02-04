@@ -19,8 +19,8 @@ export const oidcConformityMaybeFakeAcr = (
   return request.oidc_context?.acr_values &&
     request.oidc_context.acr_values.length > 0
     ? request.oidc_context.acr_values[
-        request.oidc_context.acr_values.length - 1
-      ]
+    request.oidc_context.acr_values.length - 1
+    ]
     : fallback
 }
 
@@ -54,7 +54,7 @@ export const oidcConformityMaybeFakeSession = (
     idToken.given_name = 'Foo'
     idToken.family_name = 'Bar'
     idToken.website = 'https://www.ory.sh'
-    idToken.zoneinfo = 'Europe/Belrin'
+    idToken.zoneinfo = 'Europe/Berlin'
     idToken.birthdate = '1.1.2014'
     idToken.gender = 'robot'
     idToken.profile = 'https://www.ory.sh'
