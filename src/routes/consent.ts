@@ -115,6 +115,8 @@ router.post('/', csrfProtection, (req, res, next) => {
     // This data will be available in the ID token.
     id_token: {
       // baz: 'bar'
+      permissions: ['create:items', 'update:items', 'delete:items'],
+      roles: ['ROLE_USER', 'ROLE_ADMIN']
     }
   }
 
