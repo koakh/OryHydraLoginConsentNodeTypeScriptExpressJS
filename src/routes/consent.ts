@@ -1,10 +1,10 @@
 import express from 'express'
 import url from 'url'
-import urljoin from 'url-join'
 import csrf from 'csurf'
 import { hydraAdmin } from '../config'
 import { oidcConformityMaybeFakeSession } from './stub/oidc-cert'
 import { ConsentRequestSession } from '@oryd/hydra-client'
+import { combineURLs } from '../helpers'
 
 // Sets up csrf protection
 const csrfProtection = csrf({ cookie: true })
@@ -67,7 +67,7 @@ router.get('/', csrfProtection, (req, res, next) => {
         requested_scope: body.requested_scope,
         user: body.subject,
         client: body.client,
-        action: urljoin(process.env.BASE_URL || '', '/consent')
+        action: combineURLs(process.env.BASE_URL || '', '/consent')
       })
     })
     // This will handle any error that happens when making HTTP calls to hydra

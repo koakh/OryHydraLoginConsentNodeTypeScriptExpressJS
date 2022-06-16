@@ -1,9 +1,9 @@
 import express from 'express'
 import url from 'url'
-import urljoin from 'url-join'
 import csrf from 'csurf'
 import { hydraAdmin } from '../config'
 import { oidcConformityMaybeFakeAcr } from './stub/oidc-cert'
+import { combineURLs } from '../helpers'
 
 // Sets up csrf protection
 const csrfProtection = csrf({ cookie: true })
@@ -46,7 +46,7 @@ router.get('/', csrfProtection, (req, res, next) => {
       res.render('login', {
         csrfToken: req.csrfToken(),
         challenge: challenge,
-        action: urljoin(process.env.BASE_URL || '', '/login'),
+        action: combineURLs(process.env.BASE_URL || '', '/login'),
         hint: body.oidc_context?.login_hint || ''
       })
     })
