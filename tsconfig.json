@@ -7,7 +7,7 @@
       "es2019",
       "dom"
     ],
-    "outDir": "./dist",
+    "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
     "typeRoots": [
