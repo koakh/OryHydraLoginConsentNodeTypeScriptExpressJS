@@ -116,5 +116,9 @@ now logout and login and inspect `idToken` jwt
 - [X] removed `url-join` dependency gives problems with  **dynamic imports**, now use a minimal axios helper function at `src/helpers.ts`
 - [X] added `@types/node`
 - [ ] exchange pug with ejs
+	https://blog.logrocket.com/how-to-use-ejs-template-node-js-application/
 - [ ] install tailwind css
+	https://tailwindcss.com/docs/installation
+	https://tailwindcomponents.com/component/responsive-login-page
+	https://tailwind-elements.com/docs/standard/components/login-form/
 - [ ] 
