@@ -80,7 +80,6 @@ router.post('/', csrfProtection, (req, res, next) => {
   // for this!
   if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
     // Looks like the user provided invalid credentials, let's show the ui again...
-
     res.render('login', {
       csrfToken: req.csrfToken(),
       challenge: challenge,

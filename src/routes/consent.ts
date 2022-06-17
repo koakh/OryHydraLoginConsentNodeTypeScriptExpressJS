@@ -50,6 +50,7 @@ router.get('/', csrfProtection, (req, res, next) => {
               // accessToken: { foo: 'bar' },
               // This data will be available in the ID token.
               // idToken: { baz: 'bar' },
+              id_token: { permissions: ['create:items', 'update:items', 'delete:items'], roles: ['ROLE_USER', 'ROLE_ADMIN'] }
             }
           })
           .then(({ data: body }) => {
@@ -116,6 +117,8 @@ router.post('/', csrfProtection, (req, res, next) => {
     // This data will be available in the ID token.
     id_token: {
       // baz: 'bar'
+      permissions: ['create:items', 'update:items', 'delete:items'],
+      roles: ['ROLE_USER', 'ROLE_ADMIN']
     }
   }
 

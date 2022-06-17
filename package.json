@@ -16,7 +16,8 @@
     "lint": "eslint . --ext .ts",
     "twind": "npx tailwindcss -i ./src/input.css -o ./public/css/output.css --watch",
     "format": "prettier --write ${npm_package_config_prettierTarget}",
-    "format:check": "prettier --check ${npm_package_config_prettierTarget}"
+    "format:check": "prettier --check ${npm_package_config_prettierTarget}",
+    "docker:build": "docker build -t hydra-login-consent-logout ."
   },
   "dependencies": {
     "@oryd/hydra-client": "^1.9.0-alpha.2",
