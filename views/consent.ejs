@@ -1,35 +1,88 @@
-extends layout
+<%- include('../partials/head') %>
 
-block content
-    h1 An application requests access to your data!
-    form(action=action, method="POST")
-        input(type="hidden", name="challenge", value=challenge)
-        input(type="hidden", name="_csrf", value=csrfToken)
+	<h1 class="font-medium self-center text-lg sm:text-xl text-gray-600 mt-4">An application requests access to your data!
+	</h1>
 
-        if client.logo_uri
-            img(src=client.logo_uri)
+	<div class="mt-1">
+		<form action="#" method="POST">
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<input type="hidden" name="challenge" value="<%= challenge %>" />
 
-        p.
-            Hi #{user}, application <strong>#{client.client_name || client.client_id}</strong> wants access resources on your behalf and to:
+			<%if (requested_client.logo_uri) { %>
+				<div class="mx-28">
+					<img src="<%= requested_client.logo_uri %>" />
+				</div>
+				<% } %>
 
-        each scope in requested_scope
-            input(type="checkbox", class="grant_scope", id=scope, value=scope, name="grant_scope")
-            label(for=scope) #{scope}
-            br
+					<h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
+						Hi <strong>
+							<%= user %>
+						</strong>, application <strong>
+							<%= requested_client.client_name || requested_client.client_id %>
+						</strong> wants access resources on your behalf and to:
+					</h1>
 
-        p.
-            Do you want to be asked next time when this application wants to access your data? The application will
-            not be able to ask for more permissions without your consent.
-        ul
-            if client.policy_uri
-                li
-                    a(href=client.policy_uri) Policy
-            if client.tos_uri
-                li
-                    a(href=client.tos_uri) Terms of Service
-        p
-            input(type="checkbox", id="remember", name="remember", value="1")
-            label(for="remember") Do not ask me again
-        p
-            input(type="submit", id="accept", name="submit", value="Allow access")
-            input(type="submit", id="reject", name="submit", value="Deny access")
+					<% for(let [index,scope] of requested_scope.entries() || []){ %>
+						<div class="flex justify-between items-center mt-2">
+							<div class="form-group form-check">
+								<input type="checkbox" id="<%=scope%>" value="<%=scope%>" name="grant_scope" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white
+							checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top
+							bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" />
+								<label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
+									<%=scope%>
+								</label>
+							</div>
+						</div>
+						<%} %>
+
+							<h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
+								Do you want to be asked next time when this application wants to access your data? The application will
+								not be able to ask for more permissions without your consent.
+							</h1>
+
+							<%if (requested_client.policy_uri) { %>
+								<div class="flex justify-center items-center mt-4">
+									<a href="<%= requested_client.policy_uri %>" target="_blank"
+										class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-center">
+										<span class="ml-2">Policy</span>
+									</a>
+								</div>
+								<% } %>
+
+									<%if (requested_client.tos_uri) { %>
+										<div class="flex justify-center items-center mt-4">
+											<a href="<%= requested_client.tos_uri %>" target="_blank"
+												class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-center">
+												<span class="ml-2">Terms of Service</span>
+											</a>
+										</div>
+										<% } %>
+
+											<div class="flex justify-between items-center mt-4">
+												<div class="form-group form-check">
+													<input type="checkbox" id="remember" name="submit" value="1" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white
+									checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top
+									bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" />
+													<label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
+														Do not ask me again
+													</label>
+												</div>
+											</div>
+
+											<div class="flex flex-row gap-6 mt-4">
+												<div class="basis-1/2">
+													<input type="submit" id="accept" name="submit" value="Allow access"
+														class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase">
+													</input>
+												</div>
+												<div class="basis-1/2">
+													<input type="submit" id="reject" name="submit" value="Deny access"
+														class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase">
+													</input>
+												</div>
+											</div>
+
+		</form>
+	</div>
+
+	<%- include('../partials/footer') %>

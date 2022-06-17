@@ -1,109 +1,77 @@
-<!-- 
-extends layout
-
-block content
-    h1(id="login-title") Please log in
-    if error
-        p.
-            #{error}
-    form(action=action, method="POST")
-        input(type="hidden", name="_csrf", value=csrfToken)
-        input(type="hidden", name="challenge", value=challenge)
-        table(style="")
-            tr
-                td
-                    input(type="email", id="email", name="email", value=hint, placeholder="email@foobar.com")
-                td.
-                    (it's "foo@bar.com")
-            tr
-                td
-                    input(type="password", id="password", name="password")
-                td.
-                    (it's "foobar")
-        input(type="checkbox", id="remember", name="remember", value="1")
-        label(for="remember") Remember me
-        br
-        input(type="submit", id="accept", name="submit", value="Log in")
-        input(type="submit", id="reject", name="submit", value="Deny access") 
--->
-
 <%- include('../partials/head') %>
 
-	<!-- <section class="h-screen"> -->
-	<div class="min-h-screen flex flex-col items-center justify-center px-6">
-		<div class="flex flex-col bg-white shadow-2xl px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-lg w-full max-w-sm -mt-20">
+	<h1 id="login-title" class="font-medium self-center text-lg sm:text-xl text-gray-600 mt-4">Please log in</h1>
+	<div class="mt-1">
+		<form action="#" method="POST">
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<input type="hidden" name="challenge" value="<%= challenge %>" />
 
-			<div class="mx-28">
-				<img src="assets/logo.svg" />
+			<!-- <div class="flex flex-col mb-2">
+				<label for="username" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Username / TaxNo:</label>
+				<div class="relative">
+					<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+						<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							viewBox="0 0 24 24" stroke="currentColor">
+							<path
+								d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+						</svg>
+					</div>
+					<input type="number" id="username" name="username"
+						class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
+						placeholder="Username / TaxNo" />
+				</div>
+			</div> -->
+			<div class="flex flex-col mb-2">
+				<label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">email:</label>
+				<div class="relative">
+					<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+						<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							viewBox="0 0 24 24" stroke="currentColor">
+							<path
+								d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+						</svg>
+					</div>
+					<input type="email" id="email" name="email"
+						class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
+						placeholder="Email" />
+				</div>
+			</div>
+			<div class="flex flex-col mb-4">
+				<label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Password:</label>
+				<div class="relative">
+					<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+						<span>
+							<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								viewBox="0 0 24 24" stroke="currentColor">
+								<path
+									d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+							</svg>
+						</span>
+					</div>
+					<input type="password" id="password" name="password"
+						class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
+						placeholder="Password" />
+				</div>
 			</div>
 
-			<div class="font-medium self-center text-brandBlueDark text-xl sm:text-2xl uppercase text-gray-800 mt-4">Kuartzo Auth</div>
-			<div class="mt-4">
-				<form action="#" method="POST">
+			<div class="flex flex-row gap-6">
+				<div class="basis-1/2">
+					<input type="submit" id="accept" name="submit" value="Log in"
+						class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase">
+					</input>
+				</div>
+				<div class="basis-1/2">
+					<input type="submit" id="reject" name="submit" value="Deny access"
+						class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase">
+					</input>
+				</div>
+			</div>
 
-					<input type="hidden" name="_csrf" value="csrfToken" />
-					<input type="hidden" name="challenge" value="challenge" />
-
-					<div class="flex flex-col mb-2">
-						<label for="username" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Username / TaxNo:</label>
-						<div class="relative">
-							<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-								<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									viewBox="0 0 24 24" stroke="currentColor">
-									<path
-										d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-									<!-- <path d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z"/> -->
-								</svg>
-							</div>
-							<input type="number" id="username" name="username"
-								class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
-								placeholder="Username / TaxNo" />
-						</div>
-					</div>
-					<div class="flex flex-col mb-4">
-						<label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Password:</label>
-						<div class="relative">
-							<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-								<span>
-									<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										viewBox="0 0 24 24" stroke="currentColor">
-										<path
-											d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-									</svg>
-								</span>
-							</div>
-							<input type="password" id="password" name="password"
-								class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
-								placeholder="Password" />
-						</div>
-					</div>
-
-					<div class="flex flex-row gap-6">
-						<div class="basis-1/2">
-							<button type="submit" id="accept" , name="submit"
-								class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in">
-								<span class="mr-2 uppercase">Login</span>
-								<!-- <span>
-									<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										viewBox="0 0 24 24" stroke="currentColor">
-										<path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-									</svg>
-								</span> -->
-							</button>
-						</div>
-						<div class="basis-1/2">
-							<button type="submit" id="reject" , name="reject"
-								class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in">
-								<span class="mr-2 uppercase">Deny</span>
-								<!-- <span>
-									<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										viewBox="0 0 24 24" stroke="currentColor">
-										<path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-									</svg>
-								</span> -->
-							</button>
-						</div>
-					</div>
+			<%if (locals.error) { %>
+				<div class="font-medium self-center text-xs sm:text-sm text-red-900 mt-4">
+					<%= error %>
+				</div>
+				<% } %>
 
 					<div class="flex justify-between items-center mt-4">
 						<div class="form-group form-check">
@@ -116,23 +84,20 @@ block content
 						</div>
 						<a href="#!" class="text-gray-800">Forgot password?</a>
 					</div>
-				</form>
-			</div>
-
-			<div class="flex justify-center items-center mt-4">
-				<a href="#" target="_blank"
-					class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-center">
-					<span>
-						<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							viewBox="0 0 24 24" stroke="currentColor">
-							<path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-						</svg>
-					</span>
-					<span class="ml-2">You don't have an account?</span>
-				</a>
-			</div>
-		</div>
+		</form>
 	</div>
-	<!-- </section> -->
+
+	<div class="flex justify-center items-center mt-4">
+		<a href="#" target="_blank"
+			class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-center">
+			<span>
+				<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+					viewBox="0 0 24 24" stroke="currentColor">
+					<path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+				</svg>
+			</span>
+			<span class="ml-2">You don't have an account?</span>
+		</a>
+	</div>
 
 	<%- include('../partials/footer') %>

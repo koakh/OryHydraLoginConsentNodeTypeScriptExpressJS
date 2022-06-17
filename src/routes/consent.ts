@@ -66,7 +66,9 @@ router.get('/', csrfProtection, (req, res, next) => {
         // and what additional data you have available.
         requested_scope: body.requested_scope,
         user: body.subject,
-        client: body.client,
+        // must rename client to requested_client else gives bellow error
+        // https://stackoverflow.com/questions/44323864/ejs-include-is-not-a-function-error
+        requested_client: body.client,
         action: combineURLs(process.env.BASE_URL || '', '/consent')
       })
     })

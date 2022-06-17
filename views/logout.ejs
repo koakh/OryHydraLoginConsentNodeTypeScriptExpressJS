@@ -1,12 +1,32 @@
-extends layout
+<%- include('../partials/head') %>
 
-block content
-    h1 Do you wish to log out?
-    if error
-        p.
-            #{error}
-    form(action=action,method="POST")
-        input(type="hidden",name="_csrf",value=csrfToken)
-        input(type="hidden",name="challenge",value=challenge)
-        input(type="submit",id="accept",value="Yes")
-        input(type="submit",id="reject",value="No")
+	<h1 class="font-medium self-center text-lg sm:text-xl text-gray-600 mt-4">Do you wish to log out?</h1>
+
+	<div class="mt-1">
+		<form action="#" method="POST">
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<input type="hidden" name="challenge" value="<%= challenge %>" />
+
+			<div class="flex flex-row gap-6 mt-4">
+				<div class="basis-1/2">
+					<input type="submit" id="accept" name="submit" value="Yes"
+						class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase">
+					</input>
+				</div>
+				<div class="basis-1/2">
+					<input type="submit" id="reject" name="submit" value="No"
+						class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase">
+					</input>
+				</div>
+			</div>
+
+			<%if (locals.error) { %>
+				<div class="font-medium self-center text-xs sm:text-sm text-red-900 mt-4">
+					<%= error %>
+				</div>
+				<% } %>
+
+		</form>
+	</div>
+
+	<%- include('../partials/footer') %>

@@ -84,7 +84,7 @@ router.post('/', csrfProtection, (req, res, next) => {
     res.render('login', {
       csrfToken: req.csrfToken(),
       challenge: challenge,
-      error: 'The username / password combination is not correct'
+      error: 'Username / password is not correct'
     })
 
     return

@@ -1,0 +1,5 @@
+Project:
+  consent:
+    requested_client.logo_uri
+    requested_client.policy_uri
+    requested_client.tos_uri
