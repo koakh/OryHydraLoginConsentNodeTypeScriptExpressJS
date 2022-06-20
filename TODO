@@ -3,3 +3,8 @@ Project:
     requested_client.logo_uri
     requested_client.policy_uri
     requested_client.tos_uri
+
+Change Password
+Forget Password
+
+Opt add mail and phoneNumber used to change and recover password
