@@ -23,11 +23,11 @@ $ curl -X POST \
 	http://localhost:4445/clients \
 	-H 'Content-Type: application/json' \
 	-d '{
- "client_id": "my-implicit-client",
- "grant_types": ["implicit"],
- "response_types": ["token"],
- "redirect_uris": ["http://localhost:3000/"],
- "token_endpoint_auth_method": "client_secret_post"
+	"client_id": "my-implicit-client",
+	"grant_types": ["implicit"],
+	"response_types": ["token"],
+	"redirect_uris": ["http://localhost:3000/"],
+	"token_endpoint_auth_method": "client_secret_post"
 }'
 
 # $ curl -X POST \
@@ -115,10 +115,10 @@ now logout and login and inspect `idToken` jwt
 - [X] found 0 vulnerabilities
 - [X] removed `url-join` dependency gives problems with  **dynamic imports**, now use a minimal axios helper function at `src/helpers.ts`
 - [X] added `@types/node`
-- [ ] exchange pug with ejs
+- [X] exchange pug with ejs
 	https://blog.logrocket.com/how-to-use-ejs-template-node-js-application/
-- [ ] install tailwind css
+- [X] install tailwind css
 	https://tailwindcss.com/docs/installation
 	https://tailwindcomponents.com/component/responsive-login-page
 	https://tailwind-elements.com/docs/standard/components/login-form/
-- [ ] 
+- [X] 

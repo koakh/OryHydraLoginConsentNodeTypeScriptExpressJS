@@ -1,9 +1,9 @@
 <%- include('../partials/head') %>
 
-  <h1 class="font-medium text-xs sm:text-sm text-gray-600 mt-4">
+  <h1 class="font-medium text-lg sm:text-sm text-gray-600 mt-4">
     <%= message %>
   </h1>
-  <div class="mt-1">
+  <div class="mt-1 text-xs">
     <%if (locals.error) { %>
       <div class="font-medium text-xs sm:text-sm text-red-900 mt-4">
         <%= locals.error %>

@@ -106,6 +106,23 @@ router.post('/', csrfProtection, (req, res, next) => {
     grantScope = [grantScope]
   }
 
+  let profileGrantProps: any = {};
+  if (grantScope.indexOf('profile') > -1) {
+    profileGrantProps.avatar_url = 'http://koakh.com/avatar.png';
+    profileGrantProps.family_name = 'Doe';
+    profileGrantProps.given_name = 'John';
+  }
+  let emailGrantProps: any = {};
+  if (grantScope.indexOf('profile') > -1) {
+    // profileGrantProps.email = 'mario@koakh.com';
+  }
+  // TODO: check if is persisted in db
+  let phoneGrantProps: any = {};
+  if (grantScope.indexOf('phone') > -1) {
+    phoneGrantProps.phone_number = '1337133713371337';
+    phoneGrantProps.phone_number_verified = true;
+  }
+
   // The session allows us to set session data for id and access tokens
   let session: ConsentRequestSession = {
     // This data will be available when introspecting the token. Try to avoid sensitive information here,
@@ -118,7 +135,10 @@ router.post('/', csrfProtection, (req, res, next) => {
     id_token: {
       // baz: 'bar'
       permissions: ['create:items', 'update:items', 'delete:items'],
-      roles: ['ROLE_USER', 'ROLE_ADMIN']
+      roles: ['ROLE_USER', 'ROLE_ADMIN'],
+      ...profileGrantProps,
+      ...emailGrantProps,
+      ...phoneGrantProps,
     }
   }
 

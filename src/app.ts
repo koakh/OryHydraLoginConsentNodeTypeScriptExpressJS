@@ -7,6 +7,10 @@ import routes from './routes'
 import login from './routes/login'
 import logout from './routes/logout'
 import consent from './routes/consent'
+import activation from './routes/activation'
+import changePassword from './routes/change-password'
+import forget from './routes/forget'
+import profile from './routes/profile'
 
 const app = express()
 
@@ -19,7 +23,7 @@ app.set('view engine', 'ejs')
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'))
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
@@ -27,6 +31,10 @@ app.use('/', routes)
 app.use('/login', login)
 app.use('/logout', logout)
 app.use('/consent', consent)
+app.use('/activation', activation)
+app.use('/change-password', changePassword)
+app.use('/forget', forget)
+app.use('/profile', profile)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

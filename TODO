@@ -1,10 +1,21 @@
 Project:
   consent:
-    requested_client.logo_uri
-    requested_client.policy_uri
-    requested_client.tos_uri
-
-Change Password
-Forget Password
-
-Opt add mail and phoneNumber used to change and recover password
+    ✔ requested_client.logo_uri @done(22-06-21 20:15)
+    ✔ requested_client.policy_uri @done(22-06-21 20:15)
+    ✔ requested_client.tos_uri @done(22-06-21 20:15)
+  features:
+    ✔ Login @done(22-07-27 00:32)
+    ✔ Consent @done(22-07-27 00:32)
+    ☐ @critical replace insed.ejs with a non construction page, ex the login, or use redirect to login (better)
+    ☐ add favicon.ico
+    IdentityProvider Api:
+      ☐ Activate Password
+      ☐ Change Password
+      ☐ Forget User
+      ☐ View Change Profile email, phoneNumberm here can see all the used captured values
+        Opt add mail and phoneNumber used to change and recover password
+    flutter oauth:
+    ✔ firefox oauth2 flutter @done(22-06-21 20:29)
+      "open in app? your activity may no longer be private"
+      https://github.com/mozilla-mobile/fenix/issues/10881
+      fixed just remove firefox focus from default browser and close and open flutter
