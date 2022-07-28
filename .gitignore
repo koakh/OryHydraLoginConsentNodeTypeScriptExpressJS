@@ -2,3 +2,6 @@ node_modules/
 .idea
 lib/
 .bak/*.tgz
+.env
+.env.production
+.env.development

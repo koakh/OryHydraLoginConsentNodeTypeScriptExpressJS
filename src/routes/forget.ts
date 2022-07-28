@@ -11,7 +11,7 @@ router.get('/', csrfProtection, (req, res, next) => {
   // If authentication can't be skipped we MUST show the login UI.
   res.render('forget', {
     message: 'Forget stub',
-    submessage: 'work in progress'
+    subMessage: 'work in progress'
   })
 })
 

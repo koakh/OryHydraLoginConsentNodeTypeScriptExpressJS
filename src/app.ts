@@ -2,7 +2,6 @@ import express, { NextFunction, Response, Request } from 'express'
 import path from 'path'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
-
 import routes from './routes'
 import login from './routes/login'
 import logout from './routes/logout'

@@ -13,6 +13,7 @@
     "typeRoots": [
       "./typings"
     ],
+    "sourceMap": true,
     "esModuleInterop": true
   },
   "exclude": [

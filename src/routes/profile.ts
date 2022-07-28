@@ -11,7 +11,7 @@ router.get('/', csrfProtection, (req, res, next) => {
   // If authentication can't be skipped we MUST show the login UI.
   res.render('change-password', {
     message: 'Profile stub',
-    submessage: 'work in progress'
+    subMessage: 'work in progress'
   })
 })
 

@@ -13,4 +13,17 @@ const hydraAdmin = new AdminApi(
   })
 )
 
-export { hydraAdmin }
+const identityServerConfig = {
+  ccardIdentityServerUri: process.env.CCARD_IDENTITY_SERVER_URI,
+  ccardIdentityServerApikey: process.env.CCARD_IDENTITY_SERVER_APIKEY,
+}
+
+const i18n = {
+  validationMessage: {
+    activationCode: 'activation code must be 10 chars long',
+    activationOldPasswordCode: 'old password must be 10 chars long',
+    password: 'must have at least 8 character\'s, one lower, one upper, one number and one symbol',
+  }
+}
+
+export { hydraAdmin, identityServerConfig, i18n }
