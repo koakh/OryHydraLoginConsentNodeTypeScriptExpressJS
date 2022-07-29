@@ -1,5 +1,8 @@
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -11,6 +14,7 @@
     "Kuartzo",
     "oidc",
     "oryd",
+    "Parens",
     "tailwindcss",
     "twind",
     "urljoin",

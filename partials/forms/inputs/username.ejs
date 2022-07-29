@@ -1,0 +1,8 @@
+<%- include('../input-text', {
+  fieldType:'text',
+  fieldId:'username',
+  fieldLabel:'username/fiscalNumber',
+  fieldPlaceholder:'usernamePlaceholder',
+  fieldValue: typeof data !== 'undefined' && typeof data.username !== 'undefined' ? data.username: '',
+  validationErrorMessage: typeof validationErrors !=='undefined' && typeof validationErrors.username !=='undefined' ? validationErrors.username.msg : undefined
+}) %>

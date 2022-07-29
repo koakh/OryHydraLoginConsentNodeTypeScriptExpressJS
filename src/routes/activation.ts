@@ -7,11 +7,12 @@ import { getValidationErrors } from '../utils';
 import url from 'url';
 
 const router = express.Router();
+const view = 'activation';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 router.get('/', (req: Request, res: Response, _next: NextFunction) => {
   const query = url.parse(req.url, true).query;
-  res.render('activation', { data: { activationCode: query?.code } });
+  res.render(view, { data: { activationCode: query?.code } });
 });
 
 router.post(
@@ -20,28 +21,55 @@ router.post(
     .isLength({ min: 10, max: 10 })
     .withMessage(i18n.validationMessage.activationCode),
   body('oldPassword')
-    .isLength({ min: 10, max: 10 })
-    .withMessage(i18n.validationMessage.activationOldPasswordCode),
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 0,
+      minSymbols: 0,
+    })
+    .withMessage(i18n.validationMessage.password),
   body('newPassword')
-    .isStrongPassword()
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 0,
+      minSymbols: 0,
+    })
     .withMessage(i18n.validationMessage.password)
     .custom((value, { req }) => {
       if (value === req.body.oldPassword) {
-        throw new Error('New password must be different from old password');
+        throw new Error(
+          i18n.validationMessage.newPasswordMustBeDifferentFromOldPassword
+        );
       }
       // Indicates the success of this synchronous custom validator
       return true;
     }),
   body('newPasswordConfirmation')
-    .isStrongPassword()
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 0,
+      minSymbols: 0,
+    })
     .withMessage(i18n.validationMessage.password)
     .custom((value, { req }) => {
       if (value !== req.body.newPassword) {
-        throw new Error('Password confirmation does not match password');
+        throw new Error(
+          i18n.validationMessage.passwordConfirmationDoesNotMatchPassword
+        );
       }
       // Indicates the success of this synchronous custom validator
       return true;
     }),
+  body('email').isEmail().withMessage(i18n.validationMessage.email),
+  body('phoneNumber')
+    .isMobilePhone(['pt-PT', 'es-ES'])
+    .withMessage(i18n.validationMessage.phoneNumber),
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (req: Request, res: Response, _next: NextFunction) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -49,8 +77,7 @@ router.post(
     // debug errors
     if (!errors.isEmpty()) {
       // return res.status(400).json({ errors: errors.array() });
-      // const validationErrors = getValidationErrors(errors);
-      return res.render('activation', {
+      return res.render(view, {
         data: req.body,
         validationErrors: getValidationErrors(errors),
       });
@@ -85,14 +112,14 @@ router.post(
         console.error(error.response.data);
         console.error(error.response.status);
         console.error(error.response.headers);
-        return res.render('activation', {
+        return res.render(view, {
           data: req.body,
           error: (error.response.data as MessageResponse).message,
         });
       } else {
         // Something happened in setting up the request that triggered an Error
         console.error('Error', error);
-        return res.render('activation', { data: req.body, error });
+        return res.render(view, { data: req.body, error });
       }
     }
   }
