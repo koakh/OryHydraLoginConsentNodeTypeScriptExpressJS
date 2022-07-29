@@ -79,13 +79,13 @@ router.post('/', csrfProtection, async (req, res, next) => {
 
   // Let's check if the user provided valid credentials. Of course, you'd use a database or some third-party service
   // for this!
-  if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
-    // if (
-    //   await await apiLogin({
-    //     username: req.body.username,
-    //     password: req.body.password,
-    //   })
-    // ) {
+  // if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
+  if (
+    await await apiLogin({
+      username: req.body.username,
+      password: req.body.password,
+    })
+  ) {
     // Looks like the user provided invalid credentials, let's show the ui again...
     res.render('login', {
       csrfToken: req.csrfToken(),
