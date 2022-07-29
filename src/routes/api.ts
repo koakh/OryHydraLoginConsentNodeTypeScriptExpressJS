@@ -14,7 +14,10 @@ export const apiLogin = async (payload: LoginPayload): Promise<boolean> => {
       `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
       payload,
       {
-        headers,
+        headers: {
+          Authorization: `Bearer ${identityServerConfig.ccardIdentityServerApikey}`,
+          'Content-Type': 'application/json',
+        },
       }
     );
     console.log(`response: [${JSON.stringify(response, undefined, 2)}]`);
