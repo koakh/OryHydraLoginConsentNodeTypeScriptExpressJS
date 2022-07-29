@@ -1,24 +1,26 @@
-import express from 'express'
-import url from 'url'
-import csrf from 'csurf'
-import { hydraAdmin } from '../config'
-import { oidcConformityMaybeFakeSession } from './stub/oidc-cert'
-import { ConsentRequestSession } from '@oryd/hydra-client'
-import { combineURLs } from '../helpers'
+import express from 'express';
+import url from 'url';
+import csrf from 'csurf';
+import { hydraAdmin } from '../config';
+import { oidcConformityMaybeFakeSession } from './stub/oidc-cert';
+import { ConsentRequestSession } from '@oryd/hydra-client';
+import { combineURLs } from '../helpers';
 
 // Sets up csrf protection
-const csrfProtection = csrf({ cookie: true })
-const router = express.Router()
+const csrfProtection = csrf({ cookie: true });
+const router = express.Router();
 
 router.get('/', csrfProtection, (req, res, next) => {
   // Parses the URL query
-  const query = url.parse(req.url, true).query
+  const query = url.parse(req.url, true).query;
 
   // The challenge is used to fetch information about the consent request from ORY hydraAdmin.
-  const challenge = String(query.consent_challenge)
+  const challenge = String(query.consent_challenge);
   if (!challenge) {
-    next(new Error('Expected a consent challenge to be set but received none.'))
-    return
+    next(
+      new Error('Expected a consent challenge to be set but received none.')
+    );
+    return;
   }
 
   // This section processes consent requests and either shows the consent UI or
@@ -50,13 +52,16 @@ router.get('/', csrfProtection, (req, res, next) => {
               // accessToken: { foo: 'bar' },
               // This data will be available in the ID token.
               // idToken: { baz: 'bar' },
-              id_token: { permissions: ['create:items', 'update:items', 'delete:items'], roles: ['ROLE_USER', 'ROLE_ADMIN'] }
-            }
+              id_token: {
+                permissions: ['create:items', 'update:items', 'delete:items'],
+                roles: ['ROLE_USER', 'ROLE_ADMIN'],
+              },
+            },
           })
           .then(({ data: body }) => {
             // All we need to do now is to redirect the user back to hydra!
-            res.redirect(String(body.redirect_to))
-          })
+            res.redirect(String(body.redirect_to));
+          });
       }
 
       // If consent can't be skipped we MUST show the consent UI.
@@ -70,17 +75,17 @@ router.get('/', csrfProtection, (req, res, next) => {
         // must rename client to requested_client else gives bellow error
         // https://stackoverflow.com/questions/44323864/ejs-include-is-not-a-function-error
         requested_client: body.client,
-        action: combineURLs(process.env.BASE_URL || '', '/consent')
-      })
+        action: combineURLs(process.env.BASE_URL || '', '/consent'),
+      });
     })
     // This will handle any error that happens when making HTTP calls to hydra
-    .catch(next)
+    .catch(next);
   // The consent request has now either been accepted automatically or rendered.
-})
+});
 
 router.post('/', csrfProtection, (req, res, next) => {
   // The challenge is now a hidden input field, so let's take it from the request body instead
-  const challenge = req.body.challenge
+  const challenge = req.body.challenge;
 
   // Let's see if the user decided to accept or reject the consent request..
   if (req.body.submit === 'Deny access') {
@@ -89,42 +94,42 @@ router.post('/', csrfProtection, (req, res, next) => {
       hydraAdmin
         .rejectConsentRequest(challenge, {
           error: 'access_denied',
-          error_description: 'The resource owner denied the request'
+          error_description: 'The resource owner denied the request',
         })
         .then(({ data: body }) => {
           // All we need to do now is to redirect the browser back to hydra!
-          res.redirect(String(body.redirect_to))
+          res.redirect(String(body.redirect_to));
         })
         // This will handle any error that happens when making HTTP calls to hydra
         .catch(next)
-    )
+    );
   }
   // label:consent-deny-end
 
-  let grantScope = req.body.grant_scope
+  let grantScope = req.body.grant_scope;
   if (!Array.isArray(grantScope)) {
-    grantScope = [grantScope]
+    grantScope = [grantScope];
   }
 
-  let profileGrantProps: any = {};
+  const profileGrantProps: any = {};
   if (grantScope.indexOf('profile') > -1) {
     profileGrantProps.avatar_url = 'http://koakh.com/avatar.png';
     profileGrantProps.family_name = 'Doe';
     profileGrantProps.given_name = 'John';
   }
-  let emailGrantProps: any = {};
+  const emailGrantProps: any = {};
   if (grantScope.indexOf('profile') > -1) {
     // profileGrantProps.email = 'mario@koakh.com';
   }
   // TODO: check if is persisted in db
-  let phoneGrantProps: any = {};
+  const phoneGrantProps: any = {};
   if (grantScope.indexOf('phone') > -1) {
     phoneGrantProps.phone_number = '1337133713371337';
     phoneGrantProps.phone_number_verified = true;
   }
 
   // The session allows us to set session data for id and access tokens
-  let session: ConsentRequestSession = {
+  const session: ConsentRequestSession = {
     // This data will be available when introspecting the token. Try to avoid sensitive information here,
     // unless you limit who can introspect tokens.
     access_token: {
@@ -139,8 +144,8 @@ router.post('/', csrfProtection, (req, res, next) => {
       ...profileGrantProps,
       ...emailGrantProps,
       ...phoneGrantProps,
-    }
-  }
+    },
+  };
 
   // Here is also the place to add data to the ID or access token. For example,
   // if the scope 'profile' is added, add the family and given name to the ID Token claims:
@@ -176,16 +181,16 @@ router.post('/', csrfProtection, (req, res, next) => {
           remember: Boolean(req.body.remember),
 
           // When this "remember" sesion expires, in seconds. Set this to 0 so it will never expire.
-          remember_for: 3600
+          remember_for: 3600,
         })
         .then(({ data: body }) => {
           // All we need to do now is to redirect the user back to hydra!
-          res.redirect(String(body.redirect_to))
-        })
+          res.redirect(String(body.redirect_to));
+        });
     })
     // This will handle any error that happens when making HTTP calls to hydra
-    .catch(next)
+    .catch(next);
   // label:docs-accept-consent
-})
+});
 
-export default router
+export default router;

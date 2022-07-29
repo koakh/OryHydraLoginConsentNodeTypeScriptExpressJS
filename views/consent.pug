@@ -6,11 +6,11 @@ block content
     input(type="hidden" name="challenge", value=challenge)
     input(type="hidden" name="_csrf", value=csrfToken)
 
-        if requested_client.logo_uri
-            img(src=requested_client.logo_uri)
+      if requested_client.logo_uri
+        img(src=requested_client.logo_uri)
 
-        p.
-            Hi #{user}, application <strong>#{requested_client.client_name || requested_client.client_id}</strong> wants access resources on your behalf and to:
+      p.
+        Hi #{user}, application <strong>#{requested_client.client_name || requested_client.client_id}</strong> wants access resources on your behalf and to:
 
     each scope in requested_scope
       input(type="checkbox" class="grant_scope", id=scope, value=scope, name="grant_scope")
@@ -18,18 +18,18 @@ block content
       br
 
         p.
-            Do you want to be asked next time when this application wants to access your data? The application will
-            not be able to ask for more permissions without your consent.
+          Do you want to be asked next time when this application wants to access your data? The application will
+          not be able to ask for more permissions without your consent.
         ul
-            if requested_client.policy_uri
-                li
-                    a(href=requested_client.policy_uri) Policy
-            if requested_client.tos_uri
-                li
-                    a(href=requested_client.tos_uri) Terms of Service
+          if requested_client.policy_uri
+            li
+              a(href=requested_client.policy_uri) Policy
+          if requested_client.tos_uri
+            li
+              a(href=requested_client.tos_uri) Terms of Service
         p
-            input(type="checkbox", id="remember", name="remember", value="1")
-            label(for="remember") Do not ask me again
+          input(type="checkbox" id="remember" name="remember" value="1")
+          label(for="remember") Do not ask me again
         p
-            input(type="submit", id="accept", name="submit", value="Allow access")
-            input(type="submit", id="reject", name="submit", value="Deny access")
+          input(type="submit" id="accept" name="submit" value="Allow access")
+          input(type="submit" id="reject" name="submit" value="Deny access")

@@ -1,44 +1,47 @@
-import express, { NextFunction, Response, Request } from 'express'
-import path from 'path'
-import logger from 'morgan'
-import cookieParser from 'cookie-parser'
-import routes from './routes'
-import login from './routes/login'
-import logout from './routes/logout'
-import consent from './routes/consent'
-import activation from './routes/activation'
-import changePassword from './routes/change-password'
-import forget from './routes/forget'
-import profile from './routes/profile'
+import express, { NextFunction, Response, Request } from 'express';
+import path from 'path';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import routes from './routes';
+import login from './routes/login';
+import logout from './routes/logout';
+import consent from './routes/consent';
+import activation from './routes/activation';
+import changePassword from './routes/change-password';
+import forget from './routes/forget';
+import profile from './routes/profile';
+// import success from "./routes/success"
 
-const app = express()
+const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '..', 'views'))
+app.set('views', path.join(__dirname, '..', 'views'));
 // app.set('view engine', 'pug')
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, '..', 'public')))
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use('/', routes)
-app.use('/login', login)
-app.use('/logout', logout)
-app.use('/consent', consent)
-app.use('/activation', activation)
-app.use('/change-password', changePassword)
-app.use('/forget', forget)
-app.use('/profile', profile)
+app.use('/', routes);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/consent', consent);
+app.use('/activation', activation);
+app.use('/change-password', changePassword);
+app.use('/forget', forget);
+app.use('/profile', profile);
+// enable to customize page
+// app.use("/success", success)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(new Error('Not Found'))
-})
+  next(new Error('Not Found'));
+});
 
 // error handlers
 
@@ -46,32 +49,32 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err: Error, req: Request, res: Response) => {
-    res.status(500)
+    res.status(500);
     res.render('error', {
       message: err.message,
-      error: err
-    })
-  })
+      error: err,
+    });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use((err: Error, req: Request, res: Response) => {
-  res.status(500)
+  res.status(500);
   res.render('error', {
     message: err.message,
-    error: {}
-  })
-})
+    error: {},
+  });
+});
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack)
+  console.error(err.stack);
   res.status(500).render('error', {
-    message: JSON.stringify(err, null, 2)
-  })
-})
+    message: JSON.stringify(err, null, 2),
+  });
+});
 
-const listenOn = Number(process.env.PORT || 3000)
+const listenOn = Number(process.env.PORT || 3000);
 app.listen(listenOn, () => {
-  console.log(`Listening on http://0.0.0.0:${listenOn}`)
-})
+  console.log(`Listening on http://0.0.0.0:${listenOn}`);
+});

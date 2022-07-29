@@ -1,9 +1,14 @@
 {
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "cSpell.words": [
     "APIKEY",
     "CCARD",
     "foobot",
     "koakh",
+    "Kuartzo",
     "oidc",
     "oryd",
     "tailwindcss",

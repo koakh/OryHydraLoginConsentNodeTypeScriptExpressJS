@@ -71,17 +71,17 @@
           </input>
         </div>
       </div>
-
+      <!-- errorMessage -->
       <%if (locals.error) { %>
         <div class="font-medium self-end text-xs sm:text-sm text-red-700 mt-1 text-end">
           <%= error %>
         </div>
         <% } %>
-
+          <!-- remember -->
           <div class="flex justify-between items-center mt-4">
             <div class="form-group form-check">
-              <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white
-              type=" checkbox" id="remember" name="remember" value="1" checked:bg-brandBlueDark
+              <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white"
+                type="checkbox" id="remember" name="remember" value="1" checked:bg-brandBlueDark
                 checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat
                 bg-center bg-contain float-left mr-2 cursor-pointer" />
               <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">

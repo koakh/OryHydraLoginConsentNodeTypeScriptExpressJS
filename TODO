@@ -8,7 +8,10 @@ Project:
     ✔ Consent @done(22-07-27 00:32)
     ☐ @critical replace insed.ejs with a non construction page, ex the login, or use redirect to login (better)
     ☐ add favicon.ico
+    ☐ code in url ex http://localhost:3001/activation?code=qWbPKeAAqj
     IdentityProvider Api:
+      ☐ Login
+      if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
       ☐ Activate Password
       ☐ Change Password
       ☐ Forget User
