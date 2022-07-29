@@ -17,7 +17,7 @@ export const apiLogin = async (payload: LoginPayload): Promise<boolean> => {
       }
     );
     console.log(response);
-    return false;
+    return response.data.message === 'authorized';
   } catch (error) {
     return false;
   }
