@@ -81,7 +81,7 @@ router.post('/', csrfProtection, async (req, res, next) => {
   // for this!
   // if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
   if (
-    await apiLogin({
+    await !apiLogin({
       username: req.body.username,
       password: req.body.password,
     })
