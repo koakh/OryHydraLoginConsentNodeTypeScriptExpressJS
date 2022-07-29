@@ -9,14 +9,17 @@ Project:
     ☐ @critical replace insed.ejs with a non construction page, ex the login, or use redirect to login (better)
     ☐ add favicon.ico
     ☐ code in url ex http://localhost:3001/activation?code=qWbPKeAAqj
+    ☐ move all api calls to api.ts
+    ☐ cleanup login.ejs and login.ts
     IdentityProvider Api:
-      ☐ Login
+      ☐ @critical Login partials
       if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {
       ✔ Activate Password @done(22-07-29 23:52)
       ✔ Change Password @done(22-07-29 23:52)
       ☐ @low Forget User
       ☐ @low View Change Profile email, phoneNumber here can see all the used captured values
         Opt add mail and phoneNumber used to change and recover password
+      ☐ add svg icons to all inputs
     flutter oauth:
     ✔ firefox oauth2 flutter @done(22-06-21 20:29)
       "open in app? your activity may no longer be private"

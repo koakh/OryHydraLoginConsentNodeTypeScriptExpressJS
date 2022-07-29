@@ -1,11 +1,16 @@
 export interface MessageResponse {
-  message: string
+  message: string;
 }
 
 export interface ErrorProp {
-  value: string
-  msg: string
+  value: string;
+  msg: string;
 }
 export interface ValidationErrors {
-  [key: string]: ErrorProp
+  [key: string]: ErrorProp;
+}
+
+export interface LoginPayload {
+  username: string;
+  password: string;
 }
