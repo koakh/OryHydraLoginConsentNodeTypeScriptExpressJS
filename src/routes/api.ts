@@ -25,7 +25,9 @@ const headers = {
 //   }
 // };
 
-export const apiLogin = async (payload: LoginPayload): boolean | void => {
+export const apiLogin = async (
+  payload: LoginPayload
+): Promise<boolean | void> => {
   const article = { title: 'Axios POST Request Example' };
   const response = await axios.post('https://reqres.in/api/articles', article);
   console.log(`response: [${JSON.stringify(response, undefined, 2)}]`);
