@@ -25,7 +25,7 @@ const headers = {
 //   }
 // };
 
-export const apiLogin = (payload: LoginPayload): boolean => {
+export const apiLogin = (payload: LoginPayload): boolean | void => {
   console.log(`payload: [${JSON.stringify(payload, undefined, 2)}]`);
   axios
     .post<MessageResponse>(
@@ -37,11 +37,11 @@ export const apiLogin = (payload: LoginPayload): boolean => {
     )
     .then((data: AxiosResponse<MessageResponse, any>) => {
       console.log(`data: [${JSON.stringify(data, undefined, 2)}]`);
-      return false;
+      return true;
     })
     .catch((error) => {
       console.log(`error: [${JSON.stringify(error, undefined, 2)}]`);
       return false;
     });
-  return true;
+  // return true;
 };
