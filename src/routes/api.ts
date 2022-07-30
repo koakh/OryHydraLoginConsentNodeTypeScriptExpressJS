@@ -27,17 +27,21 @@ const headers = {
 
 export const apiLogin = (payload: LoginPayload): boolean => {
   console.log(`payload: [${JSON.stringify(payload, undefined, 2)}]`);
-  axios.post<MessageResponse>(
-    `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
-    payload,
-    {
-      headers,
-    }
-  ).then((data: AxiosResponse<MessageResponse, any>) => {
-    console.log(`data: [${JSON.stringify(data, undefined, 2)}]`);
-    return true;
-  }).catch((error) => {
-    console.log(`error: [${JSON.stringify(error, undefined, 2)}]`);
-    return false;
-  }
+  axios
+    .post<MessageResponse>(
+      `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
+      payload,
+      {
+        headers,
+      }
+    )
+    .then((data: AxiosResponse<MessageResponse, any>) => {
+      console.log(`data: [${JSON.stringify(data, undefined, 2)}]`);
+      return true;
+    })
+    .catch((error) => {
+      console.log(`error: [${JSON.stringify(error, undefined, 2)}]`);
+      return false;
+    });
+  return true;
 };
