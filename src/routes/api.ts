@@ -30,7 +30,7 @@ export const apiLogin = async (
 ): Promise<boolean | void> => {
   // const article = { title: 'Axios POST Request Example' };
   const response = await axios
-    .post(
+    .post<MessageResponse>(
       `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
       payload,
       { headers }
@@ -39,8 +39,8 @@ export const apiLogin = async (
       console.error(error);
       return false;
     });
-  console.log(`response: [${JSON.stringify(response.data, undefined, 2)}]`);
-  return (response as any)?.message === 'authorized';
+  // console.log(`response: [${JSON.stringify(response, undefined, 2)}]`);
+  return (response as any)?.data.message === 'authorized';
 
   // console.log(`payload: [${JSON.stringify(payload, undefined, 2)}]`);
   // axios
