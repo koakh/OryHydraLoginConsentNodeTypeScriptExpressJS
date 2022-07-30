@@ -20,7 +20,7 @@ export const apiLogin = async (payload: LoginPayload): Promise<boolean> => {
     console.log(`response: [${JSON.stringify(response, undefined, 2)}]`);
     return response.data.message === 'authorized';
   } catch (error) {
-    console.error(JSON.stringify(error, undefined, 2));
+    console.error(`error: ${JSON.stringify(error, undefined, 2)}`);
     return false;
   }
 };
