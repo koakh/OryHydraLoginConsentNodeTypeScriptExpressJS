@@ -31,7 +31,8 @@ export const apiLogin = async (
   const article = { title: 'Axios POST Request Example' };
   const response = await axios.post(
     `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
-    payload
+    payload,
+    { headers }
   );
   console.log(`response: [${JSON.stringify(response.data, undefined, 2)}]`);
 
