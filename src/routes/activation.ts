@@ -65,8 +65,9 @@ router.post(
       // Indicates the success of this synchronous custom validator
       return true;
     }),
-  body('email').isEmail().withMessage(i18n.validationMessage.email),
+  body('email').optional().isEmail().withMessage(i18n.validationMessage.email),
   body('phoneNumber')
+    .optional()
     .isMobilePhone(['pt-PT', 'es-ES'])
     .withMessage(i18n.validationMessage.phoneNumber),
 
