@@ -30,7 +30,7 @@ export const apiLogin = async (
 ): Promise<boolean | void> => {
   const article = { title: 'Axios POST Request Example' };
   const response = await axios.post('https://reqres.in/api/articles', article);
-  console.log(`response: [${JSON.stringify(response, undefined, 2)}]`);
+  console.log(`response: [${JSON.stringify(response.data, undefined, 2)}]`);
 
   console.log(`payload: [${JSON.stringify(payload, undefined, 2)}]`);
   axios
