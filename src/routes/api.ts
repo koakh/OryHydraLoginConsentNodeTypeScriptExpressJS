@@ -29,7 +29,10 @@ export const apiLogin = async (
   payload: LoginPayload
 ): Promise<boolean | void> => {
   const article = { title: 'Axios POST Request Example' };
-  const response = await axios.post('https://reqres.in/api/articles', article);
+  const response = await axios.post(
+    `${identityServerConfig.ccardIdentityServerUri}/api/citizens/login`,
+    payload
+  );
   console.log(`response: [${JSON.stringify(response.data, undefined, 2)}]`);
 
   console.log(`payload: [${JSON.stringify(payload, undefined, 2)}]`);
