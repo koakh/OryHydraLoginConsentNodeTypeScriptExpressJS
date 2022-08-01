@@ -84,13 +84,13 @@ router.post('/', csrfProtection, async (req, res, next) => {
     username: req.body.username,
     password: req.body.password,
   });
-  console.log(`authorized: [${JSON.stringify(authorized, undefined, 2)}]`);
   if (!authorized) {
     // Looks like the user provided invalid credentials, let's show the ui again...
     res.render('login', {
       csrfToken: req.csrfToken(),
       challenge: challenge,
-      error: 'Username / password is not correct',
+      // error: 'Username / password is not correct',
+      error: 'Unauthorized'
     });
 
     return;
