@@ -9,79 +9,6 @@
       <%- include('../partials/forms/inputs/username') %>
       <!-- password -->
       <%- include('../partials/forms/inputs/password') %>
-      <!-- 
-      <div class="flex flex-col mb-2">
-				<label for="username" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Username / TaxNo:</label>
-				<div class="relative">
-					<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-						<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							viewBox="0 0 24 24" stroke="currentColor">
-							<path
-								d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-						</svg>
-					</div>
-					<input type="number" id="username" name="username"
-						class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
-						placeholder="Username / TaxNo" />
-				</div>
-			</div>
-      -->
-      <!-- email -->
-      <!--
-      <div class="flex flex-col mb-2">
-        <label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">email:</label>
-        <div class="relative">
-          <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-            </svg>
-          </div>
-          <input
-            class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
-            type="email" id="email" name="email" placeholder="Email"
-          />
-        </div>
-      </div>
-      -->
-      <!-- password -->
-      <!--
-      <div class="flex flex-col mb-4">
-        <label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Password:</label>
-        <div class="relative">
-          <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <span>
-              <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </span>
-          </div>
-          <input
-            class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-brandBlueDark transition ease-in-out"
-            type="password" id="password" name="password" placeholder="Password"
-          />
-        </div>
-      </div>
-      -->
-      <!-- submit:login -->
-      <!--
-      <div class="flex flex-row gap-6">
-        <div class="basis-1/2">
-          <input
-            class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase"
-            type="submit" id="accept" name="submit" value="Log in" />
-          </input>
-        </div>
-      -->  
-        <!-- submit:denyAccess -->
-      <!--
-        <div class="basis-1/2">
-          <input
-            class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase"
-            type="submit" id="reject" name="submit" value="Deny access" />
-          </input>
-        </div>
-      </div>
-      -->
       <!-- submit:confirm -->
       <%- include('../partials/forms/toolbars/login-deny') %>
       <!-- errorMessage -->
@@ -97,19 +24,22 @@
       <!-- remember -->
       <div class="flex justify-between items-center mt-4">
         <div class="form-group form-check">
-          <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white"
-            type="checkbox" id="remember" name="remember" value="1" checked:bg-brandBlueDark
-            checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat
-            bg-center bg-contain float-left mr-2 cursor-pointer" />
+          <input 
+            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+            type="checkbox"
+            id="remember"
+            name="remember"
+            value="1"  />
           <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
             Remember me
           </label>
         </div>
-        <a href="#!" class="text-gray-800">Forgot password?</a>
+        <!-- <a href="#!" class="text-gray-800">Forgot password?</a> -->
       </div>
     </form>
   </div>
 
+  <!--
   <div class="flex justify-center items-center mt-4">
     <a href="#" target="_blank"
       class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-center">
@@ -122,5 +52,6 @@
       <span class="ml-2">You don't have an account?</span>
     </a>
   </div>
+  -->
 
   <%- include('../partials/footer') %>

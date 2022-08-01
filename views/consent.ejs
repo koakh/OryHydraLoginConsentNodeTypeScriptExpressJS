@@ -1,94 +1,98 @@
 <%- include('../partials/head') %>
 
-  <h1 class="font-medium self-center text-lg sm:text-xl text-gray-600 mt-4">An application requests access to your data!
-  </h1>
+  <h1 class="font-medium self-center text-lg sm:text-xl text-gray-600 mt-4">An application requests access to your data!</h1>
 
   <div class="mt-1">
     <form action="#" method="POST">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <input type="hidden" name="challenge" value="<%= challenge %>" />
 
+      <!-- logoUri -->
       <%if (requested_client.logo_uri) { %>
         <div class="mx-28">
           <img src="<%= requested_client.logo_uri %>" />
         </div>
-        <% } %>
+      <% } %>
 
-          <h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
-            Hi <strong>
-              <%= user %>
-            </strong>, application <strong>
-              <%= requested_client.client_name || requested_client.client_id %>
-            </strong> wants access resources on your behalf and to:
-          </h1>
+      <h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
+        Hi <strong>
+        <%= user %>
+        </strong>, application <strong>
+        <%= requested_client.client_name || requested_client.client_id %>
+        </strong> wants access resources on your behalf and to:
+      </h1>
 
-          <% for(let [index,scope] of requested_scope.entries() || []){ %>
-            <div class="flex justify-between items-center mt-2">
-              <div class="form-group form-check">
-                <input type="checkbox" id="<%=scope%>" value="<%=scope%>" name="grant_scope" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white
-							checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top
-							bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" />
-                <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
-                  <%=scope%>
-                </label>
-              </div>
+      <% for(let [index,scope] of requested_scope.entries() || []){ %>
+        <div class="flex justify-between items-center mt-2">
+          <div class="form-group form-check">
+            <input 
+              class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+              type="checkbox" 
+              id="<%=scope%>"
+              value="<%=scope%>"
+              name="grant_scope"
+            />
+            <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
+              <%=scope%>
+            </label>
+          </div>
+        </div>
+      <%} %>
+
+      <h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
+        Do you want to be asked next time when this application wants to access your data? The application will
+        not be able to ask for more permissions without your consent.
+      </h1>
+
+      <div class="flex justify-between items-center mt-4">
+        <div class="form-group form-check">
+          <input
+            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+            type="checkbox"
+            id="remember"
+            name="submit"
+            value="1"
+          />
+          <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
+            Do not ask me again
+          </label>
+        </div>
+      </div>
+
+      <div class="flex flex-row gap-6 mt-4">
+        <div class="basis-1/2">
+          <input type="submit" id="accept" name="submit" value="Allow access"
+            class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase">
+          </input>
+        </div>
+        <div class="basis-1/2">
+          <input type="submit" id="reject" name="submit" value="Deny access"
+            class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase">
+          </input>
+        </div>
+      </div>
+
+      <%if (requested_client.tos_uri || requested_client.tos_uri) { %>
+        <div class="flex flex-row gap-6 mt-4">
+          <%if (requested_client.policy_uri) { %>
+            <div class="basis-1/2">
+              <a href="<%= requested_client.policy_uri %>" target="_blank"
+                class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-right">
+                <span>Policy</span>
+              </a>
             </div>
-            <%} %>
-
-              <h1 class="font-medium self-center text-xs sm:text-base text-gray-600 mt-4">
-                Do you want to be asked next time when this application wants to access your data? The application will
-                not be able to ask for more permissions without your consent.
-              </h1>
-
-              <div class="flex justify-between items-center mt-4">
-                <div class="form-group form-check">
-                  <input type="checkbox" id="remember" name="submit" value="1" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white
-									checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top
-									bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" />
-                  <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
-                    Do not ask me again
-                  </label>
-                </div>
-              </div>
-
-              <div class="flex flex-row gap-6 mt-4">
-                <div class="basis-1/2">
-                  <input type="submit" id="accept" name="submit" value="Allow access"
-                    class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in mr-2 uppercase">
-                  </input>
-                </div>
-                <div class="basis-1/2">
-                  <input type="submit" id="reject" name="submit" value="Deny access"
-                    class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase">
-                  </input>
-                </div>
-              </div>
-
-              <%if (requested_client.tos_uri || requested_client.tos_uri) { %>
-                <div class="flex flex-row gap-6 mt-4">
-                  <%if (requested_client.policy_uri) { %>
-                    <div class="basis-1/2">
-                      <a href="<%= requested_client.policy_uri %>" target="_blank"
-                        class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-right">
-                        <span>Policy</span>
-                      </a>
-                    </div>
-                    <% } %>
-                      <%if (requested_client.tos_uri) { %>
-                        <div class="basis-1/2">
-                          <a href="<%= requested_client.tos_uri %>" target="_blank"
-                            class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-left">
-                            <span>Terms of Service</span>
-                          </a>
-                        </div>
-                        <% } %>
-                          <% } %>
-                </div>
-  </div>
-
-
-
-  </form>
+          <% } %>
+          <%if (requested_client.tos_uri) { %>
+            <div class="basis-1/2">
+              <a href="<%= requested_client.tos_uri %>" target="_blank"
+                class="inline-flex items-center font-bold text-brandBlueDark hover:text-brandBlue text-xs text-left">
+                <span>Terms of Service</span>
+              </a>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+    </form>
   </div>
 
   <%- include('../partials/footer') %>
