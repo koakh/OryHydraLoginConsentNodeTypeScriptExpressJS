@@ -1,8 +1,8 @@
-<%- include('../input-text', {
-  fieldType:'password',
-  fieldId:'phoneNumber',
-  fieldLabel:'phoneNumber',
-  fieldPlaceholder:'phoneNumberPlaceholder',
-  fieldValue: typeof data !== 'undefined' && typeof data.phoneNumber !== 'undefined' ? data.phoneNumber: '',
-  validationErrorMessage: typeof validationErrors !=='undefined' && typeof validationErrors.phoneNumber !=='undefined' ? validationErrors.phoneNumber.msg : undefined
+<%- include("../base/input-text", {
+  fieldType:"password",
+  fieldId:"phoneNumber",
+  fieldLabel:"phoneNumber",
+  fieldPlaceholder:"phoneNumberPlaceholder",
+  fieldValue: typeof data !== "undefined" && typeof data.phoneNumber !== "undefined" ? data.phoneNumber: "",
+  validationErrorMessage: typeof validationErrors !=="undefined" && typeof validationErrors.phoneNumber !=="undefined" ? validationErrors.phoneNumber.msg : undefined
 }) %>

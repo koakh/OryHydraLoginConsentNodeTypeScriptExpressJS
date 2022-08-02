@@ -1,8 +1,8 @@
-<%- include('../input-text', {
-  fieldType:'text',
-  fieldId:'activationCode',
-  fieldLabel:'activationCode',
-  fieldPlaceholder:'activationCode',
-  fieldValue: typeof data !== 'undefined' && typeof data.activationCode !== 'undefined' ? data.activationCode: '',
-  validationErrorMessage: typeof validationErrors !=='undefined' && typeof validationErrors.activationCode !=='undefined' ? validationErrors.activationCode.msg : undefined
+<%- include("../base/input-text", {
+  fieldType:"text",
+  fieldId:"activationCode",
+  fieldLabel:"activationCode",
+  fieldPlaceholder:"activationCode",
+  fieldValue: typeof data !== "undefined" && typeof data.activationCode !== "undefined" ? data.activationCode: "",
+  validationErrorMessage: typeof validationErrors !=="undefined" && typeof validationErrors.activationCode !=="undefined" ? validationErrors.activationCode.msg : undefined
 }) %>

@@ -2,9 +2,10 @@
   <div class="basis-1/2">
   </div>
   <div class="basis-1/2">
-    <input
-      class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-brandBlueDark hover:bg-brandBlue rounded-lg py-2 w-full transition duration-150 ease-in uppercase"
-      type="submit" id="reject" name="submit" value="Confirm" />
-    </input>
+    <%- include("../base/button", {
+      fieldType:"submit",
+      fieldId:"confirm",
+      fieldValue: "Confirm",
+    }) %>
   </div>
 </div>

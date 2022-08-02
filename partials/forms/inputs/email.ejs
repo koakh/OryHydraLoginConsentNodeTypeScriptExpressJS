@@ -1,8 +1,8 @@
-<%- include('../input-text', {
-  fieldType:'email',
-  fieldId:'email',
-  fieldLabel:'email',
-  fieldPlaceholder:'emailPlaceholder',
-  fieldValue: typeof data !== 'undefined' && typeof data.email !== 'undefined' ? data.email: '',
-  validationErrorMessage: typeof validationErrors !=='undefined' && typeof validationErrors.email !=='undefined' ? validationErrors.email.msg : undefined
+<%- include("../base/input-text", {
+  fieldType:"email",
+  fieldId:"email",
+  fieldLabel:"email",
+  fieldPlaceholder:"emailPlaceholder",
+  fieldValue: typeof data !== "undefined" && typeof data.email !== "undefined" ? data.email: "",
+  validationErrorMessage: typeof validationErrors !=="undefined" && typeof validationErrors.email !=="undefined" ? validationErrors.email.msg : undefined
 }) %>

@@ -1,25 +1,26 @@
-<%- include('../partials/head') %>
+<%- include("../partials/head") %>
 
-<%- include('../partials/forms/heading', { title: 'Activate Login' }) %>
+<%- include("../partials/forms/heading", { title: "Activate Login" }) %>
+
 <div class="mt-1">
   <form action="/activation" method="POST">
     <!-- activationCode -->
-    <%- include('../partials/forms/inputs/activation-code') %>
+    <%- include("../partials/forms/inputs/activation-code") %>
     <!-- oldPassword -->
-    <%- include('../partials/forms/inputs/old-password') %>
+    <%- include("../partials/forms/inputs/old-password") %>
     <!-- newPassword -->
-    <%- include('../partials/forms/inputs/new-password') %>
+    <%- include("../partials/forms/inputs/new-password") %>
     <!-- newPasswordConfirmation -->
-    <%- include('../partials/forms/inputs/new-password-confirmation') %>
+    <%- include("../partials/forms/inputs/new-password-confirmation") %>
     <!-- email -->
-    <%- include('../partials/forms/inputs/email') %>
+    <%- include("../partials/forms/inputs/email") %>
     <!-- phoneNumber -->
-    <%- include('../partials/forms/inputs/phone-number') %>
+    <%- include("../partials/forms/inputs/phone-number") %>
     <!-- submit:confirm -->
-    <%- include('../partials/forms/toolbars/confirmation') %>
+    <%- include("../partials/forms/toolbars/confirmation") %>
     <!-- errors -->
-    <%- include('../partials/forms/errors') %>
+    <%- include("../partials/forms/errors") %>
   </form>
 </div>
 
-<%- include('../partials/footer') %>
+<%- include("../partials/footer") %>

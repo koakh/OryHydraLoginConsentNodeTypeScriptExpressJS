@@ -1,38 +1,29 @@
-<%- include('../partials/head') %>
+<%- include("../partials/head") %>
 
-  <h1 id="title" class="font-medium self-center text-lg sm:text-xl text-gray-600 my-4">Please log in</h1>
+  <%- include("../partials/forms/heading", { title: "Please log in" }) %>
+
   <div class="mt-1">
     <form action="#" method="POST">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <input type="hidden" name="challenge" value="<%= challenge %>" />
       <!-- username -->
-      <%- include('../partials/forms/inputs/username') %>
+      <%- include("../partials/forms/inputs/username") %>
       <!-- password -->
-      <%- include('../partials/forms/inputs/password') %>
+      <%- include("../partials/forms/inputs/password") %>
       <!-- submit:confirm -->
-      <%- include('../partials/forms/toolbars/login-deny') %>
-      <!-- errorMessage -->
-      <!--
-      <%if (locals.error) { %>
-        <div class="font-medium self-end text-xs sm:text-sm text-red-700 mt-1 text-end">
-          <%= error %>
-        </div>
-      <% } %>
-      -->
+      <%- include("../partials/forms/toolbars/login-deny") %>
       <!-- errors -->
-      <%- include('../partials/forms/errors') %>
+      <%- include("../partials/forms/errors") %>
       <!-- remember -->
       <div class="flex justify-between items-center mt-4">
         <div class="form-group form-check">
-          <input 
-            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-brandBlueDark checked:border-brandBlueDark focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-            type="checkbox"
-            id="remember"
-            name="remember"
-            value="1"  />
-          <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">
-            Remember me
-          </label>
+          <%- include("../partials/forms/base/checkbox", {
+            fieldType:"submit",
+            fieldName: "remember",
+            fieldId: 'remember',
+            fieldValue: '1',
+            fieldLabel: 'Remember me',
+          }) %>
         </div>
         <!-- <a href="#!" class="text-gray-800">Forgot password?</a> -->
       </div>
@@ -49,9 +40,9 @@
           <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
         </svg>
       </span>
-      <span class="ml-2">You don't have an account?</span>
+      <span class="ml-2">You don"t have an account?</span>
     </a>
   </div>
   -->
 
-  <%- include('../partials/footer') %>
+<%- include("../partials/footer") %>

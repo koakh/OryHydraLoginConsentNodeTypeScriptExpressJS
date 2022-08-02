@@ -1,10 +1,9 @@
-<%- include('../partials/head') %>
+<%- include("../partials/head") %>
 
-  <h1 class="font-medium text-lg sm:text-sm text-gray-600 mt-4">
-    <%= message %>
-  </h1>
+  <%- include("../partials/forms/heading", { title: message }) %>
+
   <div class="mt-1 text-xs">
     <%= subMessage %>
   </div>
 
-  <%- include('../partials/footer') %>
+<%- include("../partials/footer") %>
