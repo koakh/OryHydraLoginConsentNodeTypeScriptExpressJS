@@ -1,0 +1,29 @@
+{
+	"files": [
+		{
+			"path": "src/routes/consent.ts",
+			"bookmarks": [
+				{
+					"line": 68,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 116,
+					"column": 3,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/routes/login.ts",
+			"bookmarks": [
+				{
+					"line": 106,
+					"column": 31,
+					"label": ""
+				}
+			]
+		}
+	]
+}

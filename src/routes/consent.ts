@@ -5,6 +5,8 @@ import { hydraAdmin } from "../config"
 import { oidcConformityMaybeFakeSession } from "./stub/oidc-cert"
 import { ConsentRequestSession } from "@oryd/hydra-client"
 import { combineURLs } from "../helpers"
+import { apiGetCitizenByTaxNo } from "./api"
+import { CitizenDto } from "../types"
 
 // Sets up csrf protection
 const csrfProtection = csrf({ cookie: true })
@@ -50,10 +52,11 @@ router.get("/", csrfProtection, (req, res, next) => {
               // accessToken: { foo: 'bar' },
               // This data will be available in the ID token.
               // idToken: { baz: 'bar' },
-              id_token: {
-                permissions: ["create:items", "update:items", "delete:items"],
-                roles: ["ROLE_USER", "ROLE_ADMIN"],
-              },
+              // TODO: commented, the one that work is abobe, find for id_token
+              // id_token: {
+              //   permissions: ["create:items", "update:items", "delete:items"],
+              //   roles: ["ROLE_USER", "ROLE_ADMIN"],
+              // },
             },
           })
           .then(({ data: body }) => {
@@ -81,9 +84,9 @@ router.get("/", csrfProtection, (req, res, next) => {
   // The consent request has now either been accepted automatically or rendered.
 })
 
-router.post("/", csrfProtection, (req, res, next) => {
+router.post("/", csrfProtection, async (req, res, next) => {
   // The challenge is now a hidden input field, so let's take it from the request body instead
-  const challenge = req.body.challenge
+  const challenge = req.body.challenge;
 
   // Let's see if the user decided to accept or reject the consent request..
   if (req.body.submit === "Deny access") {
@@ -109,21 +112,28 @@ router.post("/", csrfProtection, (req, res, next) => {
     grantScope = [grantScope]
   }
 
+  // TODO: how to get user nif here
+  // TODO: handle error with .catch
+  const data: CitizenDto = await apiGetCitizenByTaxNo('182692124');
+  // console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(request, null, 2));
+  console.log(JSON.stringify(grantScope, null, 2));
+  console.log(JSON.stringify(req.body, null, 2));
+
   const profileGrantProps: any = {}
   if (grantScope.indexOf("profile") > -1) {
-    profileGrantProps.avatar_url = "http://koakh.com/avatar.png"
-    profileGrantProps.family_name = "Doe"
-    profileGrantProps.given_name = "John"
+    profileGrantProps.avatar_url = "http://koakh.com/avatar.png";
+    profileGrantProps.family_name = "Doe";
+    profileGrantProps.given_name = "John";
   }
   const emailGrantProps: any = {}
   if (grantScope.indexOf("profile") > -1) {
     // profileGrantProps.email = 'mario@koakh.com';
   }
-  // TODO: check if is persisted in db
   const phoneGrantProps: any = {}
   if (grantScope.indexOf("phone") > -1) {
-    phoneGrantProps.phone_number = "1337133713371337"
-    phoneGrantProps.phone_number_verified = true
+    phoneGrantProps.phone_number = "1337133713371337";
+    phoneGrantProps.phone_number_verified = true;
   }
 
   // The session allows us to set session data for id and access tokens

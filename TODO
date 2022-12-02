@@ -3,6 +3,7 @@ Project:
     ✔ requested_client.logo_uri @done(22-06-21 20:15)
     ✔ requested_client.policy_uri @done(22-06-21 20:15)
     ✔ requested_client.tos_uri @done(22-06-21 20:15)
+    ☐ finish const data = await apiGetCitizenByTaxNo('182692124');
   features:
     ✔ Login @done(22-07-27 00:32)
     ✔ Consent @done(22-07-27 00:32)
@@ -12,6 +13,7 @@ Project:
     ☐ move all api calls to api.ts
     ☐ cleanup login.ejs and login.ts
     ☐ @critical jwt payload auth, must send profile of loged user, now moke data
+    ☐ @low move all hardcoded strings to i18n file
     IdentityProvider Api:
       ☐ @critical Login partials
       if (!(req.body.email === 'foo@bar.com' && req.body.password === 'foobar')) {

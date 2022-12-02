@@ -8,6 +8,8 @@
     // KO /home/mario/Development/@Kuartzo/TypeScriptNodeExpressLoginConsentAppOryHydra
     // KO ~/Development/@Kuartzo/TypeScriptNodeExpressLoginConsentAppOryHydra
     // OK /mnt/storage/Development/@Kuartzo/TypeScriptNodeExpressLoginConsentAppOryHydra
+    //
+    // always view debug console and kill port 3001 if used `sudo fuser -k 3001/tcp`
     {
       "name": "Launch via npm",
       "type": "node",

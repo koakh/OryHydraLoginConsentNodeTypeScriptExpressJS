@@ -19,8 +19,8 @@ export const oidcConformityMaybeFakeAcr = (
   return request.oidc_context?.acr_values &&
     request.oidc_context.acr_values.length > 0
     ? request.oidc_context.acr_values[
-        request.oidc_context.acr_values.length - 1
-      ]
+    request.oidc_context.acr_values.length - 1
+    ]
     : fallback
 }
 
@@ -34,6 +34,11 @@ export const oidcConformityMaybeFakeSession = (
   }
 
   const idToken: { [key: string]: any } = {}
+
+  console.log(`idToken: [${idToken}]`);
+  console.log(`grantScope: [${JSON.stringify(grantScope, undefined, 2)}]`);
+  console.log(`request: [${JSON.stringify(request, undefined, 2)}]`);
+  console.log(`session: [${JSON.stringify(session, undefined, 2)}]`);
 
   // If the email scope was granted, fake the email claims.
   if (grantScope.indexOf("email") > -1) {
