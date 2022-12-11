@@ -65,10 +65,10 @@ router.post(
       // Indicates the success of this synchronous custom validator
       return true;
     }),
-  body('email').isEmail().optional().withMessage(i18n.validationMessage.email),
+  body('email').isEmail().optional({ checkFalsy: true }).withMessage(i18n.validationMessage.email),
   body('phoneNumber')
     .isMobilePhone(['pt-PT', 'es-ES'])
-    .optional()
+    .optional({ checkFalsy: true })
     .withMessage(i18n.validationMessage.phoneNumber),
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
