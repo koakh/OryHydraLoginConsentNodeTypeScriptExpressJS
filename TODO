@@ -7,9 +7,9 @@ Project:
   features:
     ✔ Login @done(22-07-27 00:32)
     ✔ Consent @done(22-07-27 00:32)
-    ☐ @critical replace insed.ejs with a non construction page, ex the login, or use redirect to login (better)
+    ☐ @critical replace index.ejs with a non construction page, ex the login, or use redirect to login (better)
     ☐ add favicon.ico
-    ☐ code in url ex http://localhost:3001/activation?code=qWbPKeAAqj
+    ✔ code in url ex http://localhost:3001/activation?code=qWbPKeAAqj @done(22-12-11 19:46)
     ☐ move all api calls to api.ts
     ☐ cleanup login.ejs and login.ts
     ☐ @critical jwt payload auth, must send profile of loged user, now moke data

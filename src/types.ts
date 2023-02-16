@@ -47,4 +47,9 @@ export interface CitizenDto {
   created: Date;
   requiredChangePassword: boolean;
   activationCode: string;
+  email: string;
+  emailVerified: boolean;
+  phoneNumber?: string;
+  phoneNumberVerified?: boolean;
+  roles?: string[];
 }

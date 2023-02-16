@@ -1,12 +1,10 @@
+import { ConsentRequestSession } from "@oryd/hydra-client"
+import csrf from "csurf"
 import express from "express"
 import url from "url"
-import csrf from "csurf"
 import { hydraAdmin } from "../config"
-import { oidcConformityMaybeFakeSession } from "./stub/oidc-cert"
-import { ConsentRequestSession } from "@oryd/hydra-client"
 import { combineURLs } from "../helpers"
-import { apiGetCitizenByTaxNo } from "./api"
-import { CitizenDto } from "../types"
+import { oidcConformityMaybeFakeSession } from "./stub/oidc-cert"
 
 // Sets up csrf protection
 const csrfProtection = csrf({ cookie: true })
@@ -86,7 +84,7 @@ router.get("/", csrfProtection, (req, res, next) => {
 
 router.post("/", csrfProtection, async (req, res, next) => {
   // The challenge is now a hidden input field, so let's take it from the request body instead
-  const challenge = req.body.challenge;
+  const challenge: any = req.body.challenge;
 
   // Let's see if the user decided to accept or reject the consent request..
   if (req.body.submit === "Deny access") {
@@ -112,14 +110,7 @@ router.post("/", csrfProtection, async (req, res, next) => {
     grantScope = [grantScope]
   }
 
-  // TODO: how to get user nif here
-  // TODO: handle error with .catch
-  const data: CitizenDto = await apiGetCitizenByTaxNo('182692124');
-  // console.log(JSON.stringify(data, null, 2));
-  // console.log(JSON.stringify(request, null, 2));
-  console.log(JSON.stringify(grantScope, null, 2));
-  console.log(JSON.stringify(req.body, null, 2));
-
+  // fake data used when we don't use CONFORMITY_FAKE_CLAIMS=1
   const profileGrantProps: any = {}
   if (grantScope.indexOf("profile") > -1) {
     profileGrantProps.avatar_url = "http://koakh.com/avatar.png";
@@ -166,7 +157,7 @@ router.post("/", csrfProtection, async (req, res, next) => {
   hydraAdmin
     .getConsentRequest(challenge)
     // This will be called if the HTTP request was successful
-    .then(({ data: body }) => {
+    .then(async ({ data: body }) => {
       return hydraAdmin
         .acceptConsentRequest(challenge, {
           // We can grant all scopes that have been requested - hydra already checked for us that no additional scopes
@@ -179,7 +170,7 @@ router.post("/", csrfProtection, async (req, res, next) => {
           // and this only exists to fake a login system which works in accordance to OpenID Connect.
           //
           // If that variable is not set, the session will be used as-is.
-          session: oidcConformityMaybeFakeSession(grantScope, body, session),
+          session: await oidcConformityMaybeFakeSession(grantScope, body, session),
 
           // ORY Hydra checks if requested audiences are allowed by the client, so we can simply echo this.
           grant_access_token_audience: body.requested_access_token_audience,
