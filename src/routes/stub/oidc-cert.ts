@@ -124,7 +124,10 @@ export const oidcConformityMaybeFakeSession = async (
     idToken.scope.profile.height = data.height;
     idToken.scope.profile.gender = data.gender;
     // roles
+    // neo4j graphql library only work with root fields
     idToken.scope.profile.roles = data.roles;
+    // Use the roles property to specify the allowed roles for an operation. Use the Neo4jGraphQL config option rolesPath to specify a object path for JWT roles otherwise defaults to jwt.roles.
+    // idToken.roles = data.roles;
   }
 
   // TODO: currently not in use

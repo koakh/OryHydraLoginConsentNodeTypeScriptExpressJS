@@ -3,7 +3,10 @@ Project:
     ✔ requested_client.logo_uri @done(22-06-21 20:15)
     ✔ requested_client.policy_uri @done(22-06-21 20:15)
     ✔ requested_client.tos_uri @done(22-06-21 20:15)
-    ☐ finish const data = await apiGetCitizenByTaxNo('182692124');
+    ✔ finish const data = await apiGetCitizenByTaxNo('182692124'); @done(23-02-16 01:20)
+    ✔ add roles @done(23-02-16 01:20)
+    ☐ add roles to scopes, required to be in hydra client to, this way we can hide roles from oauth logins
+      ☐ this roles are specific to Kuartzo project, in other implementation third party can use it's own roles or permissions
   features:
     ✔ Login @done(22-07-27 00:32)
     ✔ Consent @done(22-07-27 00:32)
